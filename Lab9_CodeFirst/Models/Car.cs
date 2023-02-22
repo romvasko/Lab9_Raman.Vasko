@@ -3,8 +3,5 @@
         public int CarID { get; set; }
         public string Name { get; set; }
         
-        public Car() {
-                
-        }
     }
 }
