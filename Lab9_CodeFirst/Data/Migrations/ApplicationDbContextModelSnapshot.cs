@@ -30,11 +30,16 @@ namespace Lab9_CodeFirst.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarID"), 1L, 1);
 
+                    b.Property<int>("CarModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CarID");
+
+                    b.HasIndex("CarModelId");
 
                     b.ToTable("Cars");
                 });
@@ -258,6 +263,17 @@ namespace Lab9_CodeFirst.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Lab9_CodeFirst.Models.Car", b =>
+                {
+                    b.HasOne("Lab9_CodeFirst.Models.CarModel", "CarModel")
+                        .WithMany("Cars")
+                        .HasForeignKey("CarModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CarModel");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -307,6 +323,11 @@ namespace Lab9_CodeFirst.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Lab9_CodeFirst.Models.CarModel", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

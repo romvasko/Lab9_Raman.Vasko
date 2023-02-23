@@ -22,7 +22,8 @@ namespace Lab9_CodeFirst.Controllers
         // GET: Cars
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Cars.ToListAsync());
+            var applicationDbContext = _context.Cars.Include(c => c.CarModel);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Cars/Details/5
@@ -34,6 +35,7 @@ namespace Lab9_CodeFirst.Controllers
             }
 
             var car = await _context.Cars
+                .Include(c => c.CarModel)
                 .FirstOrDefaultAsync(m => m.CarID == id);
             if (car == null)
             {
@@ -46,6 +48,7 @@ namespace Lab9_CodeFirst.Controllers
         // GET: Cars/Create
         public IActionResult Create()
         {
+            ViewData["CarModelId"] = new SelectList(_context.CarModels, "CarModelId", "CarModelId");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Lab9_CodeFirst.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CarID,Name")] Car car)
+        public async Task<IActionResult> Create([Bind("CarID,Name,CarModelId")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Lab9_CodeFirst.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CarModelId"] = new SelectList(_context.CarModels, "CarModelId", "CarModelId", car.CarModelId);
             return View(car);
         }
 
@@ -78,6 +82,7 @@ namespace Lab9_CodeFirst.Controllers
             {
                 return NotFound();
             }
+            ViewData["CarModelId"] = new SelectList(_context.CarModels, "CarModelId", "CarModelId", car.CarModelId);
             return View(car);
         }
 
@@ -86,7 +91,7 @@ namespace Lab9_CodeFirst.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CarID,Name")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("CarID,Name,CarModelId")] Car car)
         {
             if (id != car.CarID)
             {
@@ -113,6 +118,7 @@ namespace Lab9_CodeFirst.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CarModelId"] = new SelectList(_context.CarModels, "CarModelId", "CarModelId", car.CarModelId);
             return View(car);
         }
 
@@ -125,6 +131,7 @@ namespace Lab9_CodeFirst.Controllers
             }
 
             var car = await _context.Cars
+                .Include(c => c.CarModel)
                 .FirstOrDefaultAsync(m => m.CarID == id);
             if (car == null)
             {
