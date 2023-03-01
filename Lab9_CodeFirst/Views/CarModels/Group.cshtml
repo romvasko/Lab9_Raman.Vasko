@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-action="Group">Group</a>
+    <a asp-action="Order">Order by</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                CarModelName
+            </th>
+            <th>
+                Count
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.result) {
+        <tr>
+            <td>
+                @item.Key
+            </td> 
+                <td>
+                @item.Count
+            </td> 
+
+        </tr>
+}
+    </tbody>
+</table>

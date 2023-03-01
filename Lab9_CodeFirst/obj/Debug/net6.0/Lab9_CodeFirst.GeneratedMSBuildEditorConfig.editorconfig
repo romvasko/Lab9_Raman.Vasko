@@ -35,8 +35,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyTW9kZWxzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Frankenstein/source/repos/Lab9_/Lab9_CodeFirst/Views/CarModels/Group.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyTW9kZWxzXEdyb3VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Frankenstein/source/repos/Lab9_/Lab9_CodeFirst/Views/CarModels/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyTW9kZWxzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frankenstein/source/repos/Lab9_/Lab9_CodeFirst/Views/CarModels/Order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyTW9kZWxzXE9yZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Frankenstein/source/repos/Lab9_/Lab9_CodeFirst/Views/Cars/Create.cshtml]

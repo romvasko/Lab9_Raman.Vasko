@@ -19,6 +19,25 @@ namespace Lab9_CodeFirst.Controllers
             _context = context;
         }
 
+        
+      // GET: CarModels
+        public async Task<IActionResult> Group()
+        {
+            var result = _context.CarModels.GroupBy(x => x.CarModelName).Select(y => new {
+                y.Key,
+                Count = y.Count()
+            });
+            ViewBag.result = result.ToList();
+              return View();
+        }  
+        
+        // GET: CarModels
+        public async Task<IActionResult> Order()
+        {
+            var res = _context.CarModels.OrderBy(x => x.CarModelName);
+              return View(res.ToList());
+        }
+
         // GET: CarModels
         public async Task<IActionResult> Index()
         {
